@@ -5,6 +5,7 @@ contract SharkCoin {
   address public owner;
   address public factoryAddress;
   uint public totalSupply;
+  UserFactory public userFactory;
 
   mapping(address => uint256) balances;
   mapping(address => uint256) reputations;

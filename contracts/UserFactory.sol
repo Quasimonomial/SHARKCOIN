@@ -32,7 +32,7 @@ contract UserFactory {
 
   function newUser(address uid, string name, string surname, string interests, string about)
     public
-    returns(address newUserAddress)
+    returns(bool success)
   {
     if (userExistsAt(uid)) {
       return false;
@@ -46,13 +46,14 @@ contract UserFactory {
     });
     usersList.push(uid);
     sharkCoin.giftToNewUser(uid);
-    NewUser(uid, u);
-
-    return u;
+    AddUser(uid, u);
+    return true;
   }
 
   function userExistsAt(address newBuddy) public constant returns (bool isBuddy)
   {
     return users[newBuddy].exists;
   }
+
+  event AddUser(address uid, address u);
 }
