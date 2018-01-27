@@ -100,7 +100,6 @@ contract SharkCoin {
   event Reputate(address indexed from, address indexed to, uint tokens);
 
   // TODO: Add loan functionality
-  // TODO: Allow rules to be set for these loans
   /*
     Okay how do we want a loan to work?
     We can only loan to users registered by our factory
@@ -116,10 +115,5 @@ contract SharkCoin {
 
     perhaps give interest if things happen
 
-
-    Pro requirements for loans:
-    - Participants can borrow money from each other
-    - Participants can set the rules of transactions (time, late fees)
-    - Check the destination of transaction
   */
 }
