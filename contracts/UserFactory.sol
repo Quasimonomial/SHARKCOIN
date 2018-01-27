@@ -22,6 +22,8 @@ contract UserFactory {
     public
     returns(address newUserAddress)
   {
+    // TODO: throw error and return false if our user already exists
+    // this is a security thing as we give new users shark coin, and if they sign up a new user, we give them coins
     address u = new User(uid, address(this), name, surname, interests, about);
     users[uid] = u;
     usersList.push(uid);
