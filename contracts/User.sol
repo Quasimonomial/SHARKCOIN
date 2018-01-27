@@ -6,7 +6,7 @@ contract User {
   UserFactory public factory;
   string public firstName;
   string public lastName;
-  string[] public interests;
+  string public interests;
   string public bio;
 
 
@@ -15,8 +15,7 @@ contract User {
   // Note that this is reviews of us not not reviews we have written, these addresses represent the writer not the recipient
   mapping (address => string) public reviews;
 
-  // TODO: change interests to an array of strings
-  function User(address _owner, address _factoryAddress, string _firstName, string _lastName, string[] _interests, string _bio) public {
+  function User(address _owner, address _factoryAddress, string _firstName, string _lastName, string _interests, string _bio) public {
     owner = _owner;
     factory = UserFactory(_factoryAddress);
     firstName = _firstName;
@@ -45,7 +44,7 @@ contract User {
       return true;
   }
 
-  function setInterests(string[] _newInterests) public returns(bool) {
+  function setInterests(string _newInterests) public returns(bool) {
       if (msg.sender != owner) {
           Error("You are not the owner");
           return false;
@@ -87,7 +86,7 @@ contract User {
 
   event FirstNameChanged(string changedTo);
   event LastNameChanged(string changedTo);
-  event InterestsChanged(string[] changedTo);
+  event InterestsChanged(string changedTo);
   event BioChanged(string changedTo);
   event BuddyAdded(address buddyAdder, address addedBuddy);
   event BuddyRemoved(address buddyRemover, address removedBuddy);

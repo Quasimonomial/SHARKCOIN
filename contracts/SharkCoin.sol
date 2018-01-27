@@ -5,7 +5,7 @@ contract SharkCoin {
   // TODO: expose SharkCoin To users
   address public owner;
   address public factoryAddress;
-  uint public constant totalSupply;
+  uint public totalSupply;
 
   mapping(address => uint256) balances;
   mapping(address => uint256) reputations;
@@ -20,7 +20,7 @@ contract SharkCoin {
     totalSupply = balance;
     owner = msg.sender;
     balances[owner] = balance;
-    return true;
+    /*return true;*/
   }
 
   function giftToNewUser(address newContractUser) public returns (bool success) {
@@ -32,11 +32,11 @@ contract SharkCoin {
       Error("This user already got intro coins!");
       return false;
     }
-    balances[newContractUser].add(signUpBonus);
+    balances[newContractUser] += signUpBonus;
     gifted[newContractUser] = true;
-    totalSupply.add(signUpBonus);
+    totalSupply += signUpBonus;
 
-    return true
+    return true;
   }
 
   function setUserFactory(address _factoryAddress) public returns (bool success) {
@@ -52,7 +52,7 @@ contract SharkCoin {
     return UserFactory(factoryAddress);
   }
 
-  function totalSupply() public constant returns (uint) {
+  function getTotalSupply() public constant returns (uint) {
     return totalSupply;
   }
 
@@ -66,8 +66,8 @@ contract SharkCoin {
       return false;
     }
 
-    balances[msg.sender] = balances[msg.sender].sub(tokens);
-    balances[to] = balances[to].add(tokens);
+    balances[msg.sender] = balances[msg.sender] - tokens;
+    balances[to] = balances[to] + tokens;
     Transfer(msg.sender, to, tokens);
 
     return true;
@@ -80,9 +80,9 @@ contract SharkCoin {
       return false;
     }
 
-    balances[msg.sender] = balances[msg.sender].sub(tokens);
-    totalSupply.sub(tokens);
-    reputations[to] = reputations[to].add(tokens);
+    balances[msg.sender] = balances[msg.sender] - tokens;
+    totalSupply -= tokens;
+    reputations[to] = reputations[to] + tokens;
     Reputate(msg.sender, to, tokens);
 
     return true;

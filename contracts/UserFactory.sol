@@ -8,13 +8,12 @@ contract UserFactory {
     address factory;
     string name;
     string surname;
-    string[] interests;
+    string interests;
     string about;
   }
   // index of created contracts
   mapping (address => Data) public users;
   address[] public usersList;
-
 
   // useful to know the row count in contracts index
 
@@ -25,7 +24,7 @@ contract UserFactory {
 
   // deploy a new contract
 
-  function newUser(address uid, string name, string surname, string[] interests, string about)
+  function newUser(address uid, string name, string surname, string interests, string about)
     public
     returns(address newUserAddress)
   {
@@ -45,14 +44,9 @@ contract UserFactory {
   }
 
   // TODO: function to ask if a buddy is registered ot the system
-  function buddyRegister(address newBuddy) public
+  /*function buddyRegister(address newBuddy) public
   {
     return false;
-  }
-  // TODO: eleiminate the array if we can't ask a mapping for all of it's parts, which we may want to do
-  function elimArr() public
-  {
-    return false;
-  }
+  }*/
   // TODO: Determine how this fits with the ERC223 token
 }
