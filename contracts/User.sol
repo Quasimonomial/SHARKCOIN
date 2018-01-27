@@ -6,6 +6,7 @@ contract User {
   address public owner;
   address public governingCoin;
   UserFactory public factory;
+  SharkCoin public sharkCoin;
   string public firstName;
   string public lastName;
   string public interests;
