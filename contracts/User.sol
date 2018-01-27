@@ -16,6 +16,8 @@ contract User {
   mapping (address => bool) public buddies;
   // Note that this is reviews of us not not reviews we have written, these addresses represent the writer not the recipient
   mapping (address => string) public reviews;
+  address[] public buddiesList;
+
 
   function User(address _owner, address _factoryAddress, address _governingCoin, string _firstName, string _lastName, string _interests, string _bio) public {
     owner = _owner;
@@ -80,29 +82,28 @@ contract User {
   }
 
   function addBuddy(address newBuddy) public returns(bool) {
-    // TODO: Add this function
-    // see if this address contains a user contract, if not exit
-    /*
-      exit out false if you already have a buddy with that
-      otherwise update the buddy to true
-      if the buddy is updated to true, send an event (person, added person)
-    */
     if (msg.sender != owner) {
         Error("You are not the owner");
         return false;
     }
-    return false;
+
+    if(buddies[newBuddy] == true) {
+      Error("He is your buddy silly!");
+      return false;
+    }
+
+    buddies[newBuddy] = false;
+    buddies.push(newBuddy);
+    BuddyAdded(owner, newBuddy);
+    return true;
   }
 
-  // TODO: remove buddy function
   // TODO: functionality for reviews and how that might work
-
 
   event FirstNameChanged(string changedTo);
   event LastNameChanged(string changedTo);
   event InterestsChanged(string changedTo);
   event BioChanged(string changedTo);
   event BuddyAdded(address buddyAdder, address addedBuddy);
-  event BuddyRemoved(address buddyRemover, address removedBuddy);
   event Error(string msg);
 }
