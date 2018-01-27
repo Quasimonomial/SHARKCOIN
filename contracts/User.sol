@@ -12,39 +12,48 @@ contract User {
   // Note that this is reviews of us not not reviews we have written, these addresses represent the writer not the recipient
   mapping (address => string) public reviews;
 
-  function setFirstName(string newName) public returns(bool) {
+  function setFirstName(string _newName) public returns(bool) {
       if (msg.sender != owner) {
           Error("You are not the owner");
           return false;
       }
       firstName = newName;
+      FirstNameChanged(string _newName);
       return true;
   }
 
-  function setLastName(string newName) public returns(bool) {
+  function setLastName(string _newName) public returns(bool) {
       if (msg.sender != owner) {
           Error("You are not the owner");
           return false;
       }
       lastName = newName;
+      LastNameChanged(string _newName);
       return true;
   }
 
-  function setInterests(string newInterests) public returns(bool) {
+  function setInterests(string _newInterests) public returns(bool) {
       if (msg.sender != owner) {
           Error("You are not the owner");
           return false;
       }
       interests = newInterests;
+      InterestsChanged(string _newInterests);
       return true;
   }
 
-  function setBio(string newBio) public returns(bool) {
+  function setBio(string _newBio) public returns(bool) {
       if (msg.sender != owner) {
           Error("You are not the owner");
           return false;
       }
       bio = newBio;
+      BioChanged(string _newBio);
       return true;
   }
+
+  event FirstNameChanged(string changedTo);
+  event LastNameChanged(string changedTo);
+  event InterestsChanged(string changedTo);
+  event BioChanged(string changedTo);
 }
