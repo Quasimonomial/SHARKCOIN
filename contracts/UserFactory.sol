@@ -31,8 +31,7 @@ contract UserFactory {
     public
     returns(address newUserAddress)
   {
-    // TODO: throw error and return false if our user already exists
-    if (this.buddyRegister(uid)) {
+    if (userExistsAt(uid)) {
       return false;
     }
     // this is a security thing as we give new users shark coin, and if they sign up a new user, we give them coins
@@ -46,8 +45,7 @@ contract UserFactory {
     return u;
   }
 
-  // TODO: function to ask if a buddy is registered ot the system
-  function buddyRegister(address newBuddy) public constant returns (bool isBuddy)
+  function userExistsAt(address newBuddy) public constant returns (bool isBuddy)
   {
     return users[newBuddy].exists;
   }
