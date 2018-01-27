@@ -93,7 +93,7 @@ contract User {
     }
 
     buddies[newBuddy] = false;
-    buddies.push(newBuddy);
+    buddiesList.push(newBuddy);
     BuddyAdded(owner, newBuddy);
     return true;
   }
