@@ -5,6 +5,8 @@ import "./SharkCoin.sol";
 contract UserFactory {
   SharkCoin public sharkCoin;
 
+  // TODO: add bool function to know who is mutual buddies
+
   struct Data {
     address uid;
     address factory;
@@ -15,9 +17,8 @@ contract UserFactory {
   address[] public usersList;
   address public governingCoin;
 
-  function UserFactory(address _sharkAddress) public returns(bool success) {
+  function UserFactory(address _sharkAddress) public {
     governingCoin = _sharkAddress;
-    return true;
   }
 
   // useful to know the row count in contracts index
@@ -39,14 +40,14 @@ contract UserFactory {
     // this is a security thing as we give new users shark coin, and if they sign up a new user, we give them coins
     address u = new User(uid, address(this), governingCoin, name, surname, interests, about);
     users[uid] = Data({
-      user: u,
       uid: uid,
       factory: address(this),
       exists: true
     });
     usersList.push(uid);
     sharkCoin.giftToNewUser(uid);
-    newUser(uid, u);
+    NewUser(uid, u);
+
     return u;
   }
 
@@ -54,6 +55,4 @@ contract UserFactory {
   {
     return users[newBuddy].exists;
   }
-
-  event newUser(address uid, address u);
 }
