@@ -2,7 +2,6 @@ pragma solidity ^0.4.8;
 import "./UserFactory.sol";
 
 contract SharkCoin {
-  // TODO: expose SharkCoin To users
   address public owner;
   address public factoryAddress;
   uint public totalSupply;
@@ -102,6 +101,13 @@ contract SharkCoin {
     loan grows after some period
     every block a loan is late a peputation hit is given
     is a loan is ate it drains your account if you have money then eats your reputation
+
+    To do this, get block number, block as a dude date, also variable for new thing
+    Loan can be it's own contracts
+    Takes due block, amont, interest
+
+    perhaps give interest if things happen
+
 
     Pro requirements for loans:
     - Participants can borrow money from each other
