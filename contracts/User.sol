@@ -7,6 +7,7 @@ contract User {
   string public interests;
   string public bio;
 
+
   // note that these addresses are not public keys of users but instead
   mapping (address => bool) public buddies;
   // Note that this is reviews of us not not reviews we have written, these addresses represent the writer not the recipient
@@ -26,8 +27,8 @@ contract User {
           Error("You are not the owner");
           return false;
       }
-      firstName = newName;
-      FirstNameChanged(string _newName);
+      firstName = _newName;
+      FirstNameChanged(_newName);
       return true;
   }
 
@@ -36,8 +37,8 @@ contract User {
           Error("You are not the owner");
           return false;
       }
-      lastName = newName;
-      LastNameChanged(string _newName);
+      lastName = _newName;
+      LastNameChanged(_newName);
       return true;
   }
 
@@ -46,8 +47,8 @@ contract User {
           Error("You are not the owner");
           return false;
       }
-      interests = newInterests;
-      InterestsChanged(string _newInterests);
+      interests = _newInterests;
+      InterestsChanged(_newInterests);
       return true;
   }
 
@@ -56,8 +57,8 @@ contract User {
           Error("You are not the owner");
           return false;
       }
-      bio = newBio;
-      BioChanged(string _newBio);
+      bio = _newBio;
+      BioChanged(_newBio);
       return true;
   }
 
@@ -65,4 +66,5 @@ contract User {
   event LastNameChanged(string changedTo);
   event InterestsChanged(string changedTo);
   event BioChanged(string changedTo);
+  event Error(string msg);
 }
