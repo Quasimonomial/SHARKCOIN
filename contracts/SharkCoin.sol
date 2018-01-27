@@ -115,5 +115,6 @@ contract SharkCoin {
 
     perhaps give interest if things happen
 
+    loans require mutual buddyship
   */
 }
