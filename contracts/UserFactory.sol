@@ -1,8 +1,9 @@
 pragma solidity ^0.4.8;
 import "./User.sol";
-import "./SharkCoin.sol"
+import "./SharkCoin.sol";
 
 contract UserFactory {
+  SharkCoin public sharkCoin;
 
   struct Data {
     address uid;
@@ -14,7 +15,7 @@ contract UserFactory {
   address[] public usersList;
   address public governingCoin;
 
-  function UserFactory(_sharkAddress) public returns (bool success) {
+  function UserFactory(address _sharkAddress) public returns(bool success) {
     governingCoin = _sharkAddress;
     return true;
   }
@@ -38,12 +39,14 @@ contract UserFactory {
     // this is a security thing as we give new users shark coin, and if they sign up a new user, we give them coins
     address u = new User(uid, address(this), governingCoin, name, surname, interests, about);
     users[uid] = Data({
+      user: u,
       uid: uid,
       factory: address(this),
       exists: true
     });
     usersList.push(uid);
-
+    sharkCoin.giftToNewUser(uid);
+    newUser(uid, u);
     return u;
   }
 
@@ -51,4 +54,6 @@ contract UserFactory {
   {
     return users[newBuddy].exists;
   }
+
+  event newUser(address uid, address u);
 }
