@@ -11,16 +11,6 @@ contract User {
   string public interests;
   string public bio;
 
-  // TODO: expose SharkCoin To users
-  /*
-    How might this be done?
-    So actually we might want to just seed our user factory with our sharkcoin code
-    Then we pass that address down to the coins
-    Users want to just be able to ask the balances and reputations of their coin
-    To do that, we have two getters
-    each just looks at the mappings on shark coin and reports that here
-  */
-
   // note that these addresses are not public keys of users but instead
   mapping (address => bool) public buddies;
   // Note that this is reviews of us not not reviews we have written, these addresses represent the writer not the recipient
@@ -34,6 +24,18 @@ contract User {
     lastName = _lastName;
     interests = _interests;
     bio = _bio;
+  }
+
+  function getSharkBalance() public constant returns(uint balance) {
+    sharkCoin = SharkCoin(governingCoin);
+    balance = sharkCoin.balanceOf(owner);
+    return(balance);
+  }
+
+  function getSharkRep() public constant returns(uint reputation) {
+    sharkCoin = SharkCoin(governingCoin);
+    reputation = sharkCoin.reputationOf(owner);
+    return(reputation);
   }
 
   function setFirstName(string _newName) public returns(bool) {

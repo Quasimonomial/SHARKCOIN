@@ -58,6 +58,10 @@ contract SharkCoin {
     return balances[sharkUser];
   }
 
+  function reputationOf(address sharkUser) public constant returns (uint reputation) {
+    return reputations[sharkUser];
+  }
+
   function transfer(address to, uint tokens) public returns (bool success) {
     if (balances[msg.sender] < tokens) {
       Error("You are too poor");
