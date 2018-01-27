@@ -6,6 +6,7 @@ contract UserFactory {
   struct Data {
     address uid;
     address factory;
+    bool exists;
   }
   // index of created contracts
   mapping (address => Data) public users;
@@ -31,24 +32,23 @@ contract UserFactory {
     returns(address newUserAddress)
   {
     // TODO: throw error and return false if our user already exists
+    if (this.buddyRegister(uid)) {
+      return false;
+    }
     // this is a security thing as we give new users shark coin, and if they sign up a new user, we give them coins
     address u = new User(uid, address(this), governingCoin, name, surname, interests, about);
     users[uid] = Data({
       uid: uid,
-      factory: address(this)
+      factory: address(this),
+      exists: true
     });
     usersList.push(uid);
     return u;
   }
 
   // TODO: function to ask if a buddy is registered ot the system
-  function buddyRegister(address newBuddy) public
+  function buddyRegister(address newBuddy) public constant returns (bool isBuddy)
   {
-    return false;
-  }
-  // TODO: eleiminate the array if we can't ask a mapping for all of it's parts, which we may want to do
-  function elimArr() public
-  {
-    return false;
+    return users[newBuddy].exists;
   }
 }
