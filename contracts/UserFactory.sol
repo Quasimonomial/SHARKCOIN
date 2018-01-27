@@ -1,8 +1,9 @@
 pragma solidity ^0.4.8;
 import "./User.sol";
-import "./SharkCoin.sol"
+import "./SharkCoin.sol";
 
 contract UserFactory {
+  SharkCoin public sharkCoin;
 
   struct Data {
     address uid;
@@ -14,7 +15,7 @@ contract UserFactory {
   address[] public usersList;
   address public governingCoin;
 
-  function UserFactory(_sharkAddress) public returns (bool success) {
+  function UserFactory(address _sharkAddress) public returns(bool success) {
     governingCoin = _sharkAddress;
     return true;
   }
@@ -43,7 +44,7 @@ contract UserFactory {
       exists: true
     });
     usersList.push(uid);
-
+    sharkCoin.giftToNewUser(uid);
     return u;
   }
 
