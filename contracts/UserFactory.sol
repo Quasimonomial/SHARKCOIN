@@ -6,14 +6,17 @@ contract UserFactory {
   struct Data {
     address uid;
     address factory;
-    string name;
-    string surname;
-    string interests;
-    string about;
+    bool exists;
   }
   // index of created contracts
   mapping (address => Data) public users;
   address[] public usersList;
+  address public governingCoin;
+
+  function UserFactory(_sharkAddress) public returns (bool success) {
+    governingCoin = _sharkAddress;
+    return true;
+  }
 
   // useful to know the row count in contracts index
 
@@ -30,15 +33,12 @@ contract UserFactory {
   {
     // TODO: throw error and return false if our user already exists
     // this is a security thing as we give new users shark coin, and if they sign up a new user, we give them coins
-    address u = new User(uid, address(this), name, surname, interests, about);
+    address u = new User(uid, address(this), governingCoin, name, surname, interests, about);
     users[uid] = Data({
-                        uid: uid,
-                        factory: address(this),
-                        name: name,
-                        surname: surname,
-                        interests: interests,
-                        about: about
-                      });
+      uid: uid,
+      factory: address(this),
+      exists: true
+    });
     usersList.push(uid);
     return u;
   }
@@ -46,11 +46,6 @@ contract UserFactory {
   // TODO: function to ask if a buddy is registered ot the system
   function buddyRegister(address newBuddy) public constant returns (bool isBuddy)
   {
-    if (users[newBuddy].uid == ""){
-      return false;
-    } else {
-      return true;
-    }
+    return users[newBuddy].exists;
   }
-  // TODO: Determine how this fits with the ERC223 token
 }

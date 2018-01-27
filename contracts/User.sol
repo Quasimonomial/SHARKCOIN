@@ -4,6 +4,7 @@ import "./UserFactory.sol";
 
 contract User {
   address public owner;
+  address public governingCoin;
   UserFactory public factory;
   string public firstName;
   string public lastName;
@@ -20,7 +21,6 @@ contract User {
     each just looks at the mappings on shark coin and reports that here
   */
 
-
   // note that these addresses are not public keys of users but instead
   mapping (address => bool) public buddies;
   // Note that this is reviews of us not not reviews we have written, these addresses represent the writer not the recipient
@@ -29,6 +29,7 @@ contract User {
   function User(address _owner, address _factoryAddress, string _firstName, string _lastName, string _interests, string _bio) public {
     owner = _owner;
     factory = UserFactory(_factoryAddress);
+    governingCoin = _governingCoin;
     firstName = _firstName;
     lastName = _lastName;
     interests = _interests;

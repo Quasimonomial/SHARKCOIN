@@ -19,7 +19,6 @@ contract SharkCoin {
     totalSupply = balance;
     owner = msg.sender;
     balances[owner] = balance;
-    /*return true;*/
   }
 
   function giftToNewUser(address newContractUser) public returns (bool success) {
