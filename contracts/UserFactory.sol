@@ -1,5 +1,6 @@
 pragma solidity ^0.4.8;
 import "./User.sol";
+import "./SharkCoin.sol"
 
 contract UserFactory {
 
@@ -43,6 +44,7 @@ contract UserFactory {
       exists: true
     });
     usersList.push(uid);
+
     return u;
   }
 
