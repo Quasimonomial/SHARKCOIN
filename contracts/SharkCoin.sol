@@ -7,9 +7,12 @@ contract SharkCoin {
   2: we grant 100 coins to users created by our user factory which is pretty cool
   3: we add coints to total supply on enew user event from factory,
   4: we have to add knowledge of our factory
+
+  so to set this, we assume we deploy a user factory, so to do this only the owner can set the factory
    */
 
   address public owner;
+  address public factoryAddress;
   uint public constant totalSupply;
 
   mapping(address => uint256) balances;
@@ -24,6 +27,19 @@ contract SharkCoin {
     owner = msg.sender;
     balances[owner] = balance;
     return true;
+  }
+
+  function setUserFactory(address _factoryAddress) public returns (bool success) {
+    if (msg.sender != owner) {
+      Error("You are not the boss of the shark kid");
+      return false;
+    }
+    factoryAddress = _factoryAddress;
+    return true;
+  }
+
+  function getUserFactory() public constant returns (UserFactory) {
+    return UserFactory(factoryAddress);
   }
 
   function totalSupply() public constant returns (uint) {
