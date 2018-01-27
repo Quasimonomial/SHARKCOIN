@@ -15,7 +15,6 @@ contract User {
   // Note that this is reviews of us not not reviews we have written, these addresses represent the writer not the recipient
   mapping (address => string) public reviews;
 
-  // TODO: change interests to an array of strings
   function User(address _owner, address _factoryAddress, string _firstName, string _lastName, string[] _interests, string _bio) public {
     owner = _owner;
     factory = UserFactory(_factoryAddress);
