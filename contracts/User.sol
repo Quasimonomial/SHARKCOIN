@@ -26,7 +26,7 @@ contract User {
           Error("You are not the owner");
           return false;
       }
-      firstName = newName;
+      firstName = _newName;
       FirstNameChanged(_newName);
       return true;
   }
@@ -36,7 +36,7 @@ contract User {
           Error("You are not the owner");
           return false;
       }
-      lastName = newName;
+      lastName = _newName;
       LastNameChanged(_newName);
       return true;
   }
@@ -46,7 +46,7 @@ contract User {
           Error("You are not the owner");
           return false;
       }
-      interests = newInterests;
+      interests = _newInterests;
       InterestsChanged(_newInterests);
       return true;
   }
@@ -56,7 +56,7 @@ contract User {
           Error("You are not the owner");
           return false;
       }
-      bio = newBio;
+      bio = _newBio;
       BioChanged(_newBio);
       return true;
   }
