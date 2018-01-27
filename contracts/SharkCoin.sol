@@ -3,12 +3,8 @@ import "./UserFactory.sol";
 
 contract SharkCoin {
   /*
-  So here is how we will do this
   2: we grant 100 coins to users created by our user factory which is pretty cool
   3: we add coints to total supply on enew user event from factory,
-  4: we have to add knowledge of our factory
-
-  so to set this, we assume we deploy a user factory, so to do this only the owner can set the factory
    */
 
   address public owner;
