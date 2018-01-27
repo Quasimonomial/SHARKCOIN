@@ -86,5 +86,6 @@ contract User {
   event InterestsChanged(string changedTo);
   event BioChanged(string changedTo);
   event BuddyAdded(address buddyAdder, address addedBuddy);
-  event BuddyAdded(address buddyAdder, address addedBuddy);
+  event BuddyRemoved(address buddyRemover, address removedBuddy);
+  event Error(string msg);
 }

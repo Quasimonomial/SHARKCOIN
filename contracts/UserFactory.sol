@@ -20,11 +20,11 @@ contract UserFactory {
 
   function newUser(address uid, string name, string surname, string interests, string about)
     public
-    returns(address newUser)
+    returns(address newUserAddress)
   {
     address u = new User(uid, address(this), name, surname, interests, about);
     users[uid] = u;
-    usersList.push(u);
+    usersList.push(uid);
     return u;
   }
 
