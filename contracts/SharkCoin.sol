@@ -2,27 +2,40 @@ pragma solidity ^0.4.8;
 import "./UserFactory.sol";
 
 contract SharkCoin {
-  /*
-  2: we grant 100 coins to users created by our user factory which is pretty cool
-  3: we add coints to total supply on enew user event from factory,
-   */
-
   address public owner;
   address public factoryAddress;
   uint public constant totalSupply;
 
   mapping(address => uint256) balances;
   mapping(address => uint256) reputations;
+  mapping(address => bool) gifted;
 
   string public constant name = "Shark Coin";
   string public constant symbol = "SHK";
   uint8 public constant decimals = 0;
+  uint8 public constant signUpBonus = 100;
 
   function SharkCoin(uint balance) public {
     totalSupply = balance;
     owner = msg.sender;
     balances[owner] = balance;
     return true;
+  }
+
+  function giftToNewUser(address newContractUser) public returns (bool success) {
+    if (msg.sender != factoryAddress) {
+      Error("This is defiantely cybercrime");
+      return false;
+    }
+    if (gifted[newContractUser] == true) {
+      Error("This user already got intro coins!");
+      return false;
+    }
+    balances[newContractUser].add(signUpBonus);
+    gifted[newContractUser] = true;
+    totalSupply.add(signUpBonus);
+
+    return true
   }
 
   function setUserFactory(address _factoryAddress) public returns (bool success) {
