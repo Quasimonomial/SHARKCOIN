@@ -73,9 +73,10 @@ contract User {
     return false;
   }
 
-  // TODO: remove this function
+  // TODO: remove buddy function
+  // TODO: functionality for reviews and how that might work
 
-  
+
 
   event FirstNameChanged(string changedTo);
   event LastNameChanged(string changedTo);
