@@ -7,5 +7,16 @@
 pragma solidity ^0.4.8;
 
 contract SharkCoin {
-  
+  string public constant name = "Shark Coin";
+
+  string public constant symbol = "SHK";
+
+  uint8 public constant decimals = 0;
+  /* function totalSupply() public constant returns (uint);
+
+  function balanceOf(address tokenOwner) public constant returns (uint balance);
+
+  function transfer(address to, uint tokens) public returns (bool success);
+
+  event Transfer(address indexed from, address indexed to, uint tokens); */
 }
