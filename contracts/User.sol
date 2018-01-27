@@ -2,6 +2,7 @@ pragma solidity 0.4.18;
 
 contract User {
   address public owner;
+  UserFactory public factory;
   string public firstName;
   string public lastName;
   string public interests;
@@ -14,8 +15,9 @@ contract User {
   mapping (address => string) public reviews;
 
   // TODO: change interests to an array of strings
-  function User(address _owner, string _firstName, string _lastName, string _interests, string _bio) public {
+  function User(address _owner, address _factoryAddress, string _firstName, string _lastName, string _interests, string _bio) public {
     owner = _owner;
+    factory = UserFactory(_factoryAddress);
     firstName = _firstName;
     lastName = _lastName;
     interests = _interests;
