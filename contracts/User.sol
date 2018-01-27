@@ -27,7 +27,7 @@ contract User {
           return false;
       }
       firstName = newName;
-      FirstNameChanged(string _newName);
+      FirstNameChanged(_newName);
       return true;
   }
 
@@ -37,7 +37,7 @@ contract User {
           return false;
       }
       lastName = newName;
-      LastNameChanged(string _newName);
+      LastNameChanged(_newName);
       return true;
   }
 
@@ -47,7 +47,7 @@ contract User {
           return false;
       }
       interests = newInterests;
-      InterestsChanged(string _newInterests);
+      InterestsChanged(_newInterests);
       return true;
   }
 
@@ -57,7 +57,7 @@ contract User {
           return false;
       }
       bio = newBio;
-      BioChanged(string _newBio);
+      BioChanged(_newBio);
       return true;
   }
 
