@@ -62,9 +62,25 @@ contract User {
       return true;
   }
 
+  function addBuddy(address newBuddy) public returns(bool) {
+    // TODO: Add this function
+    // see if this address contains a user contract, if not exit
+    /*
+      exit out false if you already have a buddy with that
+      otherwise update the buddy to true
+      if the buddy is updated to true, send an event (person, added person)
+    */
+    return false;
+  }
+
+  // TODO: remove this function
+
+  
+
   event FirstNameChanged(string changedTo);
   event LastNameChanged(string changedTo);
   event InterestsChanged(string changedTo);
   event BioChanged(string changedTo);
-  event Error(string msg);
+  event BuddyAdded(address buddyAdder, address addedBuddy);
+  event BuddyAdded(address buddyAdder, address addedBuddy);
 }

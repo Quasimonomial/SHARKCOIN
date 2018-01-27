@@ -27,4 +27,10 @@ contract UserFactory {
     users.push(u);
     return u;
   }
+
+  // TODO: pass the address of this contract to the new user
+  // TODO: function to ask if a buddy is registered ot the system
+  // TODO: add also a mapping
+  // TODO: eleiminate the array if we can't ask a mapping for all of it's parts, which we may want to do
+  // TODO: Determine how this fits with the ERC223 token
 }
