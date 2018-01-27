@@ -32,13 +32,13 @@ contract UserFactory {
     // this is a security thing as we give new users shark coin, and if they sign up a new user, we give them coins
     address u = new User(uid, address(this), name, surname, interests, about);
     users[uid] = Data({
-                        uid: uid,
-                        factory: address(this),
-                        name: name,
-                        surname: surname,
-                        interests: interests,
-                        about: about
-                      });
+      uid: uid,
+      factory: address(this),
+      name: name,
+      surname: surname,
+      interests: interests,
+      about: about
+    });
     usersList.push(uid);
     return u;
   }

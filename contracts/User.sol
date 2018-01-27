@@ -1,4 +1,5 @@
 pragma solidity 0.4.18;
+import "./SharkCoin.sol";
 import "./UserFactory.sol";
 
 contract User {
@@ -8,6 +9,16 @@ contract User {
   string public lastName;
   string public interests;
   string public bio;
+
+  // TODO: expose SharkCoin To users
+  /*
+    How might this be done?
+    So actually we might want to just seed our user factory with our sharkcoin code
+    Then we pass that address down to the coins
+    Users want to just be able to ask the balances and reputations of their coin
+    To do that, we have two getters
+    each just looks at the mappings on shark coin and reports that here
+  */
 
 
   // note that these addresses are not public keys of users but instead
@@ -81,7 +92,6 @@ contract User {
 
   // TODO: remove buddy function
   // TODO: functionality for reviews and how that might work
-
 
 
   event FirstNameChanged(string changedTo);
