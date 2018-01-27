@@ -76,7 +76,11 @@ contract SharkCoin {
   }
 
   function reputate(address to, uint tokens) public returns (bool success) {
-    // TODO: we can only send reputation to addresses that have a registered user with our user factory
+    userFactory = UserFactory(factoryAddress);
+    if (!userFactory.userExistsAt(to)) {
+      Error("Users not in the system cannot have a reputation!");
+      return false;
+    }
     if (balances[msg.sender] < tokens) {
       Error("You are too poor");
       return false;
