@@ -2,6 +2,7 @@ pragma solidity ^0.4.8;
 import "./UserFactory.sol";
 
 contract SharkCoin {
+  // TODO: expose SharkCoin To users
   address public owner;
   address public factoryAddress;
   uint public constant totalSupply;
@@ -93,4 +94,18 @@ contract SharkCoin {
 
   // TODO: Add loan functionality
   // TODO: Allow rules to be set for these loans
+  /*
+    Okay how do we want a loan to work?
+    We can only loan to users registered by our factory
+    Loans are a struct
+    there is a way to look at time
+    loan grows after some period
+    every block a loan is late a peputation hit is given
+    is a loan is ate it drains your account if you have money then eats your reputation
+
+    Pro requirements for loans:
+    - Participants can borrow money from each other
+    - Participants can set the rules of transactions (time, late fees)
+    - Check the destination of transaction
+  */
 }
