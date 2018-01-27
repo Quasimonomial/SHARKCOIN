@@ -26,7 +26,7 @@ contract UserFactory {
 
   // deploy a new contract
 
-  function newUser(address uid, string name, string surname, string[] interests, string about)
+  function newUser(address uid, string name, string surname, string interests, string about)
     public
     returns(address newUserAddress)
   {
