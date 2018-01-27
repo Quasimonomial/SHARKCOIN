@@ -1,4 +1,5 @@
 pragma solidity 0.4.18;
+import "./UserFactory.sol";
 
 contract User {
   address public owner;
