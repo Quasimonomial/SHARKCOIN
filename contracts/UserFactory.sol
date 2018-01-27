@@ -6,6 +6,15 @@ contract UserFactory {
   // index of created contracts
 
   mapping (address => User) public users;
+  address[] public usersList;
+
+
+  // useful to know the row count in contracts index
+
+  function getUserCount() public constant returns(uint userCount)
+  {
+   return usersList.length;
+  }
 
   // deploy a new contract
 
@@ -15,11 +24,11 @@ contract UserFactory {
   {
     address u = new User(uid, address(this), name, surname, interests, about);
     users[uid] = u;
+    usersList.push(u);
     return u;
   }
 
   // TODO: function to ask if a buddy is registered ot the system
-  // TODO: add also a mapping
   // TODO: eleiminate the array if we can't ask a mapping for all of it's parts, which we may want to do
   // TODO: Determine how this fits with the ERC223 token
 }
