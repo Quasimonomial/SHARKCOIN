@@ -3,9 +3,16 @@ import "./User.sol";
 
 contract UserFactory {
 
+  struct Data {
+    address uid;
+    address factory;
+    string name;
+    string surname;
+    string[] interests;
+    string about;
+  }
   // index of created contracts
-
-  mapping (address => User) public users;
+  mapping (address => Data) public users;
   address[] public usersList;
 
 
@@ -18,17 +25,32 @@ contract UserFactory {
 
   // deploy a new contract
 
-  function newUser(address uid, string name, string surname, string interests, string about)
+  function newUser(address uid, string name, string surname, string[] interests, string about)
     public
     returns(address newUserAddress)
   {
     address u = new User(uid, address(this), name, surname, interests, about);
-    users[uid] = u;
+    users[uid] = Data({
+                        uid: uid,
+                        factory: address(this),
+                        name: name,
+                        surname: surname,
+                        interests: interests,
+                        about: about
+                      });
     usersList.push(uid);
     return u;
   }
 
   // TODO: function to ask if a buddy is registered ot the system
+  function buddyRegister(address newBuddy) public
+  {
+    return false;
+  }
   // TODO: eleiminate the array if we can't ask a mapping for all of it's parts, which we may want to do
+  function elimArr() public
+  {
+    return false;
+  }
   // TODO: Determine how this fits with the ERC223 token
 }
