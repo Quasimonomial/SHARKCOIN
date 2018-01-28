@@ -18,7 +18,7 @@ contract UserFactory {
   address public governingCoin;
 
   function UserFactory(address _sharkAddress) public {
-    governingCoin = _sharkAddress;
+    sharkCoin = SharkCoin(_sharkAddress);
   }
 
   // useful to know the row count in contracts index
@@ -38,7 +38,7 @@ contract UserFactory {
       return false;
     }
     // this is a security thing as we give new users shark coin, and if they sign up a new user, we give them coins
-    address u = new User(uid, address(this), governingCoin, name, surname, interests, about);
+    address u = new User(uid, address(this), sharkCoin, name, surname, interests, about);
     users[uid] = Data({
       uid: uid,
       contractAddress: u,
