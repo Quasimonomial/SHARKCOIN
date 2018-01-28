@@ -9,7 +9,7 @@ contract UserFactory {
 
   struct Data {
     address uid;
-    address factory;
+    address contractAddress;
     bool exists;
   }
   // index of created contracts
@@ -41,7 +41,7 @@ contract UserFactory {
     address u = new User(uid, address(this), governingCoin, name, surname, interests, about);
     users[uid] = Data({
       uid: uid,
-      factory: address(this),
+      contractAddress: u,
       exists: true
     });
     usersList.push(uid);
@@ -50,9 +50,23 @@ contract UserFactory {
     return true;
   }
 
-  function userExistsAt(address newBuddy) public constant returns (bool isBuddy)
+  function userExistsAt(address potentialUser) public constant returns (bool hasUserContract)
   {
-    return users[newBuddy].exists;
+    return users[potentialUser].exists;
+  }
+
+  function isMutualBuddies(address buddyOne, address buddyTwo) public constant returns (bool areBuddies) {
+    userOne = User(buddyOne);
+    userTwo = User(buddyTwo);
+    return (userOne.buddies[buddyTwo] && userTwo.buddies[buddyOne]);
+  }
+
+  function isMutualBuddiesEthAddress(address buddyOne, address buddyTwo) public constant returns (bool areBuddies) {
+    userOneContractAddress = users[buddyOne].contractAddress;
+    userTwoContractAddress = users[buddyTwo].contractAddress;
+    userOne = User(userOneContractAddress);
+    userTwo = User(userTwoContractAddress);
+    return (userOne.buddies[userTwoContractAddress] && userTwo.buddies[userOneContractAddress]);
   }
 
   event AddUser(address uid, address u);
