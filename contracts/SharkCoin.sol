@@ -96,7 +96,12 @@ contract SharkCoin {
   }
 
   function loan(address to, uint principal, uint interestPercent, uint dueBlocks) public returns (bool success) {
+    // Fail and return false if there is no user at the to address
+    // Fail and return false if you guys are not buddies
 
+    // Loan is created
+    // Loan is probably a contract or structure with these things and that includes block it has been created at
+    // When Loan is due,
   }
 
   event Error(string msg);
@@ -108,7 +113,6 @@ contract SharkCoin {
     Okay how do we want a loan to work?
     We can only loan to users registered by our factory
     Loans are a struct
-    there is a way to look at time
     loan grows after some period
     every block a loan is late a peputation hit is given
     is a loan is ate it drains your account if you have money then eats your reputation
@@ -119,7 +123,6 @@ contract SharkCoin {
 
     perhaps give interest if things happen
 
-    loan takes
 
     loans require mutual buddyship
   */
