@@ -55,10 +55,10 @@ contract UserFactory {
     return users[potentialUser].exists;
   }
 
-  /* function isMutualBuddies(address buddyOne, address buddyTwo) public constant returns (bool areBuddies) {
+  function isMutualBuddies(address buddyOne, address buddyTwo) public constant returns (bool areBuddies) {
     User userOne = User(buddyOne);
     User userTwo = User(buddyTwo);
-    return (userOne.buddies[buddyTwo] && userTwo.buddies[buddyOne]);
+    return (userOne.buddies(buddyTwo) && userTwo.buddies(buddyOne));
   }
 
   function isMutualBuddiesEthAddress(address buddyOne, address buddyTwo) public constant returns (bool areBuddies) {
@@ -66,8 +66,8 @@ contract UserFactory {
     address userTwoContractAddress = users[buddyTwo].contractAddress;
     User userOne = User(userOneContractAddress);
     User userTwo = User(userTwoContractAddress);
-    return (userOne.buddies[userTwoContractAddress] && userTwo.buddies[userOneContractAddress]);
-  } */
+    return (userOne.buddies(userTwoContractAddress) && userTwo.buddies(userOneContractAddress));
+  }
 
   event AddUser(address uid, address u);
 }

@@ -95,6 +95,10 @@ contract SharkCoin {
     return true;
   }
 
+  function loan(address to, uint principal, uint interestPercent, uint dueBlocks) public returns (bool success) {
+
+  }
+
   event Error(string msg);
   event Transfer(address indexed from, address indexed to, uint tokens);
   event Reputate(address indexed from, address indexed to, uint tokens);
@@ -114,6 +118,8 @@ contract SharkCoin {
     Takes due block, amont, interest
 
     perhaps give interest if things happen
+
+    loan takes
 
     loans require mutual buddyship
   */
